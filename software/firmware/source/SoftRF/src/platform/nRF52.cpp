@@ -1914,21 +1914,19 @@ IODev_ops_t nRF52_USBSerial_ops = {
 static bool nRF52_ADB_setup()
 {
   if (FATFS_is_mounted) {
-    const char *fileName;
-
-    if (ui->adb == DB_OGN) {
-      fileName = "/Aircrafts/ogn.cdb";
-      if (ucdb.open(fileName) != CDB_OK) {
-        Serial.print("Invalid OGN CDB: ");
-        Serial.println(fileName);
-      } else {
-        ADB_is_open = true;
-      }
-    }
+    const char *fileName;    
     if (ui->adb == DB_FLN) {
       fileName = "/Aircrafts/fln.cdb";
       if (ucdb.open(fileName) != CDB_OK) {
         Serial.print("Invalid FLN CDB: ");
+        Serial.println(fileName);
+      } else {
+        ADB_is_open = true;
+      }
+    }else{ //Default use OGN
+      fileName = "/Aircrafts/ogn.cdb";
+      if (ucdb.open(fileName) != CDB_OK) {
+        Serial.print("Invalid OGN CDB: ");
         Serial.println(fileName);
       } else {
         ADB_is_open = true;

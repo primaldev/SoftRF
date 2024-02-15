@@ -55,7 +55,7 @@ const char *NMEA_CallSign_Prefix[] = {
   [RF_PROTOCOL_APRS]      = "HAM"
 };
 
-#define isTimeToPGRMZ() (millis() - PGRMZ_TimeMarker > 1000)
+#define isTimeToPGRMZ() (millis() - PGRMZ_TimeMarker > SENSORS_NMEA_INTERVAL)
 unsigned long PGRMZ_TimeMarker = 0;
 
 extern uint32_t tx_packets_counter, rx_packets_counter;
